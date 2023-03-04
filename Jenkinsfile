@@ -35,6 +35,7 @@ pipeline {
             }
             
             steps {
+                sh 'terraform init -reconfigure'
                 sh ' terraform init -input=false'
                 sh ' terraform workspace select ${environment} || terraform workspace new ${environment}'
 
