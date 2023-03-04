@@ -35,11 +35,11 @@ pipeline {
             }
             
             steps {
-                sh 'terraform init -input=false'
-                sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
+                sh 'sudo terraform init -input=false'
+                sh 'sudo terraform workspace select ${environment} || terraform workspace new ${environment}'
 
-                sh "terraform plan -input=false -out tfplan "
-                sh 'terraform show -no-color tfplan > tfplan.txt'
+                sh "sudo terraform plan -input=false -out tfplan "
+                sh 'sudo terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
@@ -72,7 +72,7 @@ pipeline {
             }
             
             steps {
-                sh "terraform apply -input=false tfplan"
+                sh "sudo terraform apply -input=false tfplan"
             }
         }
         
