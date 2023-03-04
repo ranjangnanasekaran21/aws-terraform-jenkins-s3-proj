@@ -35,7 +35,7 @@ pipeline {
             }
             
             steps {
-                sh 'terraform init -reconfigure'
+                // sh ' terraform init -reconfigure' - S3 Bucket has to be created earlier before we initiate jenkins pipline job
                 sh ' terraform init -input=false'
                 sh ' terraform workspace select ${environment} || terraform workspace new ${environment}'
 
